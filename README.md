@@ -821,12 +821,14 @@ Check the scripts at
 I found this very nice thread called [Everything you need to know about NVRAM](http://www.insanelymac.com/forum/topic/298027-guide-aio-guides-for-hackintosh/page-2#entry2029552).
 
 ### BIOS time :gun: ###
+[up up up](#)
 
 Sometimes when I reboot it detects and complains that the clock has been resetted. I setup the BIOS clock to UTC which is GMT-2 for the winter and then use bankofgreece NTP for the settings.
 
 **I suspect that it has to do that I set up the BIOS clock with GMT+2 and then OSX tries to setup the hardware clock again. Perhaps GMT or something. And in the next reboot it complains**.
 
 ### System Preferences > Energy Saver ###
+[up up up](#)
 
 * The `System Preferences > Energy Saver` panel has changed
 
@@ -849,6 +851,7 @@ Sometimes when I reboot it detects and complains that the clock has been resette
 
 
 ### Disk Renumbering ###
+[up up up](#)
 
 * Disk renumbering on reboot sometimes the SSD is `disk0` sometimes `disk1`
 
