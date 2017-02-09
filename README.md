@@ -180,7 +180,7 @@ I examined the configuration on the **USB stick** and it is the following:
 * `Kernel And Kext Patches > KernelPm`
 * `Kernel And Kext Patches > KextsToPatch > AppleAHCIPort`
 
-{% highlight xml %}
+```xml
     <dict>
         <key>Comment</key>
         <string>External icons patch</string>
@@ -195,11 +195,11 @@ I examined the configuration on the **USB stick** and it is the following:
         SW50ZXJuYWw=
         </data>
     </dict>
-{% endhighlight %}
+```
 
 * `Kernel And Kext Patches > KextsToPatch > AppleUSBXHCIPCI`
 
-{% highlight xml %}
+```xml
     <dict>
         <key>Comment</key>
         <string>change 15 port limit to 26 in XHCI kext (100-Series-10.12)</string>
@@ -214,7 +214,7 @@ I examined the configuration on the **USB stick** and it is the following:
         g710////Gw==
         </data>
     </dict>
-{% endhighlight %}
+```
 
 * `Rt Variables > BooterConfig > 0x28`
 * `Rt Variables > CsrActiveConfig > 0x3`
@@ -223,20 +223,20 @@ I examined the configuration on the **USB stick** and it is the following:
 
 Just in case you want to know what `CsrActiveConfig` does, this is taken from the clover wiki:
 
-{% highlight text %}
+```text
 Relevant user options for SIP are as follows:
 BooterConfig=0x28
 csr-active-config 0x0 = SIP Enabled (Default)
 csr-active-config 0x3 = SIP Partially Disabled (Loads unsigned kexts)
 csr-active-config 0x67 = SIP Disabled completely
-{% endhighlight %}
+```
 
 and a note why we are using `dart=0` and what about `VT-d`
 
-{% highlight text %}
+```text
 dart=0
 Disables the VT-d virtualization technology built into certain Intel processors. For Hackintoshes, VT-d is pretty useless; virtually no Mac OS X applications use it (virtualization apps like Virtualbox tend to use the alternative VT-x technology instead), and certain Hackintosh motherboards have been known to crash in Mac OS X when VT-d is enabled.
-{% endhighlight %}
+```
 
 ##### Clover Configuration #####
 
@@ -283,9 +283,9 @@ Finally boot using the **USB Stick** on OSX, run the latest multibeast and selec
 * `Bootloaders > Clover UEFI Boot Mode`
 * `Customize > Intel HD 530` 
 
-{% highlight text %}
+```text
 (Fix for most Intel HD 530 graphics port layouts on 100 Series motherboards. Adds 4 display patch for AppleIntelSKLGraphicsFramebuffer to `/Volumes/EFI/EFI/CLOVER/config.plist`. Adds `ig-platform-id=0x19120000`to `/Volumes/EFI/EFI/CLOVER/config.plist`.)
-{% endhighlight %}
+```
 
 * `Customize > System Definitions > iMac17,1` (change from the default which is iMac14,2)
 
@@ -309,7 +309,7 @@ Finally boot using the **USB Stick** on OSX, run the latest multibeast and selec
 * `Kernel And Kext Patches > KernelPm`
 * `Kernel And Kext Patches > KextsToPatch > AppleUSBXHCIPCI`
 
-{% highlight xml %}
+```xml
       <dict>
         <key>Comment</key>
         <string>Raise 15 port limit to 30 in AppleUSBXHCIPCI</string>
@@ -324,11 +324,11 @@ Finally boot using the **USB Stick** on OSX, run the latest multibeast and selec
         g72M/v//Hw==
         </data>
       </dict>
-{% endhighlight %}
+```
 
 * `Kernel And Kext Patches > KextsToPatch > AppleAHCIPort`
 
-{% highlight xml %}
+```xml
       <dict>
         <key>Comment</key>
         <string>External icons patch</string>
@@ -343,11 +343,11 @@ Finally boot using the **USB Stick** on OSX, run the latest multibeast and selec
         SW50ZXJuYWw=
         </data>
       </dict>
-{% endhighlight %}
+```
 
 * `Kernel And Kext Patches > KextsToPatch > 10.11-SKL-1912000-4_displays`
 
-{% highlight xml %}
+```xml
 <dict>                 
     <key>Comment</key>
     <string>10.11-SKL-1912000-4_displays</string>
@@ -362,7 +362,7 @@ Finally boot using the **USB Stick** on OSX, run the latest multibeast and selec
     AQMEAw==
     </data>
 </dict>
-{% endhighlight %}
+```
 
 * `Rt Variables > BooterConfig > 0x28`
 * `Rt Variables > CsrActiveConfig > 0x3`
@@ -398,7 +398,7 @@ In the EFI partition `EFI/CLOVER/drivers64UEFI/` erase `VBoxHfs-64.efi` and use 
 
 In clover the `KextsToPatch` for `Comment change 15 port limit to 26 in XHCI kext` changes the port limit. The original post for the skylake Q170 HP is [this post](https://www.tonymacx86.com/threads/usb-new-raise-port-limit-patch-for-macos-10-12-sierra.202329/):
 
-{% highlight xml %}
+```xml
       <dict>
           <key>Comment</key>
           <string>change 15 port limit to 26 in XHCI kext (100-series) 10.12</string>
@@ -409,7 +409,7 @@ In clover the `KextsToPatch` for `Comment change 15 port limit to 26 in XHCI kex
           <key>Replace</key>
           <data>g710////Gw==</data>
       </dict>
-{% endhighlight %}
+```
 
 
 ##### SSDT gen #####
@@ -421,7 +421,7 @@ I tried both and saw no performance difference and compared the graph from the I
 
 the output from Pike's script:
 
-{% highlight console %}
+```console
 $ ./ssdtPRGen.sh
 #ssdtPRGen.sh v0.9  Copyright (c) 2011-2012 by † RevoGirl
 #             v6.6  Copyright (c) 2013 by † Jeroen
@@ -455,7 +455,7 @@ $ ./ssdtPRGen.sh
 #
 #Compilation complete. 0 Errors, 0 Warnings, 0 Remarks, 0 Optimizations
 #Do you want to open ssdt.dsl (y/n)? n
-{% endhighlight %}
+```
 
 * `cp ~/Library/ssdtPRGen/ssdt.aml /Volumes/EFI/EFI/CLOVER/ACPI/patched`
 * `Acpi->SortedOrder add SSDT.aml to the list`
@@ -475,7 +475,7 @@ Apparently there are a lot of issues with the Skylake HD 530 GPU. After increasi
 You need to do in addition to the inject Intel and ig-platform-id in clover:
 * `Kernel And Kext Patches > KextsToPatch > change GFX0 to IGPU`
 
-{% highlight xml %}
+```xml
 <dict>
   <key>Comment</key>
   <string>change GFX0 to IGPU</string>
@@ -490,11 +490,11 @@ You need to do in addition to the inject Intel and ig-platform-id in clover:
   SUdQVQ==
   </data>
 </dict>
-{% endhighlight %}
+```
 
 * `Devices > Add Properties`
 
-{% highlight xml %}
+```xml
     <key>AddProperties</key>
     <array>
       <dict>
@@ -586,7 +586,7 @@ You need to do in addition to the inject Intel and ig-platform-id in clover:
         <string>onboard-1</string>
       </dict>
     </array>
-{% endhighlight %}
+```
 
 ##### Video second monitor #####
 [up up up](#)
@@ -611,7 +611,7 @@ There are two ways you can fix it:
 
 Assuming that you have a single discreet card (just the HD530) then you can apply the following patch in the `Kernel and Kext Patches` as described in the thread:
 
-{% highlight xml %}
+```xml
      <dict>
           <key>Comment</key>
           <string>AppleGraphicsDevicePolicy (board-id) Patch (c) Pike R. Alpha</string>
@@ -626,7 +626,7 @@ Assuming that you have a single discreet card (just the HD530) then you can appl
           Ym9hcmQtaXg=
           </data>
       </dict>
-{% endhighlight %}
+```
 
 **Option 2**
 
@@ -634,13 +634,13 @@ Alternative you can use `AGDPfix.v1.3.zip` which patches ` the /System/Library/E
 
 This is what the `AGDPfix` does:
 
-{% highlight perl %}
+```perl
 perl -pi -e 's|[<]string[>]Config1|<string>none|' /System/Library/Extensions/AppleGraphicsControl.kext/Contents/PlugIns/AppleGraphicsDevicePolicy.kext/Contents/Info.plist;perl -pi -e 's|[<]string[>]Config2|<string>none|' /System/Library/Extensions/AppleGraphicsControl.kext/Contents/PlugIns/AppleGraphicsDevicePolicy.kext/Contents/Info.plist;perl -pi -e 's|[<]true|<false|' /System/Library/Extensions/AppleGraphicsControl.kext/Contents/PlugIns/AppleGraphicsDevicePolicy.kext/Contents/Info.plist
-{% endhighlight %}
+```
 
 The whole script is:
 
-{% highlight applescript %}
+```applescript
 (*
 Created by ShilohH on June 8th 2015.
 Updated to v1.1 on Jan 6th, 2016. Added fix for iMac15/17n definitions.
@@ -688,7 +688,7 @@ Restart Now?" with icon 1
     end tell
   end if
 end run
-{% endhighlight %}
+```
 
 This guy explains it in [this thread](https://www.tonymacx86.com/threads/skylake-intel-hd-530-integrated-graphics-working-as-of-10-11-4.188891/page-50):
 
@@ -716,7 +716,7 @@ The original 10.12.2 `AppleGraphicsControl.kext` is located [here]({{ site.url }
 
 When I boot I always get the following messages prior getting to the GUI:
 
-{% highlight console %}
+```console
 IG: HE PCI ACPI device not found - PAVP services will be disabled - add IMEI to EFI / ACPI device list
 IG: Called when FB is in a non-wake State in getAttribute - attribute: 1734298985
 IG: Called when FB is in a non-wake State in getAttribute - attribute: 1734298985
@@ -735,11 +735,11 @@ IG: DRMStatus - iTunes/Apple Store Content Access Problem. Content playback may 
 [IGPU] Graphics Address: PPGTT, Separate Address Space
 [IGPU] MultiForceWake Enabled: Using 3D Driver
 [IGPU] Scheduler Throttle Cap = 100ms
-{% endhighlight %}
+```
 
 on about it shows as:
 
-{% highlight console %}
+```console
 Intel HD Graphics 530:
 Chipset Model: Intel HD Graphics 530
 Type: GPU
@@ -749,7 +749,7 @@ Vendor: Intel (0x8086)
 Device ID: 0x1912
 Revision ID: 0x0006
 Metal: Supported
-{% endhighlight %}
+```
 
 However [Cinebench](https://www.maxon.net/en/products/cinebench/) gives me on 10.12.2 approx 26fps. The same computer under windows 10 performs much better giving approx 60fps which is half the performance. Similar performance applies for [LuxRender](http://www.luxmark.info/)
 
@@ -773,16 +773,16 @@ Given the message I see when booting, and the performance difference, is the HD5
 
 The IORegExplorer has the following:
 
-{% highlight console %}
+```console
 AppleFramebuffer@0: connector-type 10 00 00 00, port-number 0x0
 AppleFramebuffer@1: connector-type 00 04 00 00, port-number 0x5 - DP left
 AppleFramebuffer@2: connector-type 00 04 00 00, port-number 0x6 - 
 AppleFramebuffer@3: connector-type 00 04 00 00, port-number 0x7 - DP right
-{% endhighlight %}
+```
 
 I [posted](http://www.insanelymac.com/forum/topic/319724-skylake-hd530-question/) on insanelymac and got the following answers:
 
-{% highlight console %}
+```console
 Denicio
 Hello sakoula, Dionusis here :)
  
@@ -792,7 +792,7 @@ Ramalama
 2 things:
 OSX openGL support is very bad.
 HD530 is not well supported...
-{% endhighlight %}
+```
 
 
 ##### Install RC scripts on target volume #####
@@ -802,15 +802,15 @@ NVRAM is used to store parameters in the parameters in the form of `MyVar=TestVa
 
 In order to test it boot into OSX and give
 
-{% highlight console %}
+```console
 sudo nvram MyVar=TestValue
-{% endhighlight %}
+```
 
 reboot and test whether the variable is there with 
 
-{% highlight console %}
+```console
 nvram -p
-{% endhighlight %}
+```
 
 if not you need to emulate this using clover. On the clover installer select `Drivers64UEFI > EmuVariableUefi-64`. Every time the machine reboots it will load a `nvram.plist` from the disk.
 
@@ -871,7 +871,7 @@ Finally I boot the machine and took two videos.
 
 **sandisk becomes disk0**
 
-{% highlight console %}
+```console
 000001.538571 AppleUSBHostResources@: AppleUSBHostResources::allocateDownstramBusCurrentGated: assuming successful wakeUnits 150 sleepUnits 0
 000001.538538 AppleUSBHostResources@: AppleUSBHostResources::allocateDownstramBusCurrentGated: assuming successful wakeUnits 150 sleepUnits 0
 000001.538566 AppleUSBHostResources@: AppleUSBHostResources::allocateDownstramBusCurrentGated: assuming successful wakeUnits 150 sleepUnits 0
@@ -894,11 +894,11 @@ Warning: couldn't block sleep during cache update
 Warning: proceeding w/o DiskArb
 /dev/disk0s2 on / (hfs,local,journaled)
 bash: /etc/rc.server: No such file or directory
-{% endhighlight %}
+```
 
 **sandisk becomes disk1**
 
-{% highlight console %}
+```console
 rooting via boot-uuid from /chosen: 039F81E5-E860-34CB-91D4-BBA663049474
 Waiting on IOPRoviderClass > IOResources > IOResourceMatch > boot-uuid-media
 Got boot device = IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/SAT0@17/AppleIntelPchSeriesAHCI/PRT0@0/IOAHCIDevice@0/AppleAHCIDiskDriver/IOAHCIBlockStorageDevice/IOBlockStorageDriver/SanDisk SD7SB3Q-256G-1006 Media/IOGUIDPartitionScheme/Untitled 2@2
@@ -921,7 +921,7 @@ Warning: couldn't block sleep during cache update
 Warning: proceeding w/o DiskArb
 /dev/disk1s2 on / (hfs,local,journaled)
 bash: /etc/rc.server: No such file or directory
-{% endhighlight %}
+```
 
 > According to the [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-restarts-instead-of-shut-down/) it does not matter so it can be considered solved.
 
@@ -956,9 +956,9 @@ format usb stick:
 
 use command to install sierra to the stick:
 
-{% highlight console %}
+```console
 sudo /Applications/Install\ macOS\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/USB --applicationpath /Applications/Install\ macOS\ Sierra.app --nointeraction
-{% endhighlight %}
+```
 
 #### Install Clover USB stick ####
 [up up up](#)
@@ -1083,9 +1083,9 @@ after reading [this](http://kb.sandisk.com/app/answers/detail/a_id/8145/~/trim-c
 
 In order to do that you need to do the [following](http://macossierra-slow.com/enable-trim-third-party-ssds-macos-sierra-trimforce/):
 
-{% highlight console %}
+```console
 sudo trimforce enable
-{% endhighlight %}
+```
 
 * `AJA SanDisk (with trim) SD7SB3Q-256G-1006 Revision X2180006: 339MB/sec write, 392MB/sec read`
 
@@ -1093,7 +1093,7 @@ did a check with smartctl:
 
 **SD7SB3Q-256G-1006**
 
-{% highlight console %}
+```console
 smartctl -a disk0
 smartctl 6.5 2016-05-07 r4318 [Darwin 16.3.0 x86_64] (local build)
 Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
@@ -1188,11 +1188,11 @@ SMART Selective self-test log data structure revision number 1
 Selective self-test flags (0x0):
   After scanning selected spans, do NOT read-scan remainder of disk.
 If Selective self-test is pending on power-up, resume after 0 minute delay.
-{% endhighlight %}
+```
 
 **ST1000DM003-1SB102**
 
-{% highlight console %}
+```console
 smartctl -a disk1
 smartctl 6.5 2016-05-07 r4318 [Darwin 16.3.0 x86_64] (local build)
 Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
@@ -1292,11 +1292,11 @@ SMART Selective self-test log data structure revision number 1
 Selective self-test flags (0x0):
   After scanning selected spans, do NOT read-scan remainder of disk.
 If Selective self-test is pending on power-up, resume after 0 minute delay.
-{% endhighlight %}
+```
 
 **WD10EAVS-14M4B0**
 
-{% highlight console %}
+```console
 smartctl -a disk2
 smartctl 6.5 2016-05-07 r4318 [Darwin 16.3.0 x86_64] (local build)
 Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
@@ -1391,7 +1391,7 @@ SMART Selective self-test log data structure revision number 1
 Selective self-test flags (0x0):
   After scanning selected spans, do NOT read-scan remainder of disk.
 If Selective self-test is pending on power-up, resume after 0 minute delay.
-{% endhighlight %}
+```
 
 ### Upgrade to 10.12.3 ###
 [up up up](#)
