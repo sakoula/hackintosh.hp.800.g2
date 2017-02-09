@@ -1,14 +1,53 @@
----
-layout: post
-title:  "Configure macOS on bog G2 i7"
-date:   2017-02-09 08:42:23
-categories: hackintosh elcapitan sierra bog
----
-
 Installing and configuring macOS on bog for a 'HP EliteDesk 800 G2 TWR'
 
-* This line is a placeholder to generate the table of contents
-{:toc}
+Table of Contents
+=================
+
+* [Software Repository](#software-repository)
+* [Hardware Specs](#hardware-specs)
+* [Windows Setup](#windows-setup)
+    * [Install Windows](#install-windows)
+    * [Drivers and BIOS](#drivers-and-bios)
+    * [Configure BIOS Settings](#configure-bios-settings)
+    * [Benchmarking Windows 10](#benchmarking-windows-10)
+* [Install using Multibeast](#install-using-multibeast)
+    * [Prepate USB stick](#prepate-usb-stick)
+    * [Use Unibeast](#use-unibeast)
+        * [Clover config.plist](#clover-configplist)
+        * [Clover Configuration](#clover-configuration)
+        * [Clover Kexts](#clover-kexts)
+    * [Install Sierra 10.12.2](#install-sierra-10122)
+        * [Install OSX](#install-osx)
+        * [Run Multibeast](#run-multibeast)
+        * [Inspect configuration](#inspect-configuration)
+    * [Additional tweaks](#additional-tweaks)
+        * [HFSPlus for VBoxHfs-64](#hfsplus-for-vboxhfs-64)
+        * [USB clover patch](#usb-clover-patch)
+        * [SSDT gen](#ssdt-gen)
+        * [VoodooHDA glitch](#voodoohda-glitch)
+        * [Video artifacts](#video-artifacts)
+        * [Video second monitor](#video-second-monitor)
+        * [Video second monitor &gt;= 10.12.3](#video-second-monitor--10123)
+        * [Video Performance](#video-performance)
+        * [Install RC scripts on target volume](#install-rc-scripts-on-target-volume)
+        * [BIOS time <g-emoji alias="gun" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f52b.png" ios-version="6.0">🔫</g-emoji>](#bios-time-gun)
+       * [System Preferences &gt; Energy Saver](#system-preferences--energy-saver)
+       * [Reboots on Shutdown](#reboots-on-shutdown)
+       * [Disk Renumbering](#disk-renumbering)
+       * [DSDT](#dsdt)
+* [Install 10.12 my way manually](#install-1012-my-way-manually)
+    * [Prepare USB stick](#prepare-usb-stick)
+    * [Install Clover USB stick](#install-clover-usb-stick)
+    * [Install Sierra 10.12.2](#install-sierra-10122-1)
+    * [Configure Sierra 10.12.2](#configure-sierra-10122)
+    * [System Preferences Initial Configuration](#system-preferences-initial-configuration)
+* [Benchmarking Sierra 10.12.2](#benchmarking-sierra-10122)
+* [HDD/SSD performance](#hddssd-performance)
+* [Upgrade to 10.12.3](#upgrade-to-10123)
+* [References](#references)
+* [Software](#software)
+
+Created partially by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 ### Software Repository ###
 [up up up](#)
