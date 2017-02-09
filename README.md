@@ -49,11 +49,6 @@ Table of Contents
 
 Created partially by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
-# Software Repository #
-[up up up](#)
-
-All software used for the machine to install 10.12 can be found in [{{site.sources}}/hackintosh.10.12.wks-0088-25](file://{{site.sources}}/hackintosh.10.12.wks-0088-25) 
-
 # Hardware Specs #
 [up up up](#)
 
@@ -708,7 +703,7 @@ When I upgraded in 10.12.3 my second monitor was not even detected. I applied th
 
 However I still have the following problem. When I lock the screen which makes the monitors sleep (and power off) my computer reboots! This is happening when I have the two monitors attached. When I just have one of them the computer behaves as expected.
 
-The original 10.12.2 `AppleGraphicsControl.kext` is located [here]({{ site.url }}/assets/macOS-bog-G2-i7/AppleGraphicsControl.kext.10.12.2.tgz)
+The original 10.12.2 `AppleGraphicsControl.kext` is located [here](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/AppleGraphicsControl.kext.10.12.2.tgz)
 
 ### Video Performance ###
 [up up up](#)
@@ -837,11 +832,11 @@ Sometimes when I reboot it detects and complains that the clock has been resette
 
 *before*
 
-![sierra.energy.before](assets/sierra.energy.before.png)
+![sierra.energy.before](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/sierra.energy.before.png)
 
 *after*
 
-![sierra.energy.after](assets/sierra.energy.after.png)
+![sierra.energy.after](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/sierra.energy.after.png)
 
 > **Note**: This is most likely to the iMac17,1 SMBIOS setting
 
@@ -933,11 +928,11 @@ Download [MaciASL](https://sourceforge.net/projects/maciasl)
 
 Check for the patches for [pjalm](http://pjalm.com/forums/)
 
-**The stock DSDT is located here**: [DSDT.HP800G2.zip]({{ site.url }}/assets/macOS-bog-G2-i7/DSDT.HP800G2.zip)
+**The stock DSDT is located here**: [DSDT.HP800G2.zip]({{ site.url }}https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/DSDT.HP800G2.zip)
 
 check the [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-restarts-instead-of-shut-down/)
 
-**The patched by MaLd0n DSDT is located here**: [DSDT.sakoula.zip]({{ site.url }}/assets/macOS-bog-G2-i7/DSDT.sakoula.zip)
+**The patched by MaLd0n DSDT is located here**: [DSDT.sakoula.zip](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/DSDT.sakoula.zip)
 
 **But I am not using it**
 
@@ -970,15 +965,15 @@ Install clover on the USB stick 'Clover_v2.3k_r3974.zip':
 * Install Clover in the ESP
 * Drivers64UEFI > OsxAptioFix2Drv-64
 
-Place the [multibeast]({{ site.url }}/assets/macOS-bog-G2-i7/10.12.kexts.tgz) versions of the following kexts in `EFI/CLOVER/kexts/10.12`:
+Place the [multibeast](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/10.12.kexts.tgz) versions of the following kexts in `EFI/CLOVER/kexts/10.12`:
 
 * [USBInjectAll.kext](https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads)
 * [FakeSMC.kext](https://github.com/kozlek/HWSensors/releases)
 * [IntelMausiEthernet.kext](https://github.com/Mieze/IntelMausiEthernet)
 
-Make sure to delete `/EFI/CLOVER/drivers64UEFI/VBoxHfs-64.efi` and replace it with [`/EFI/CLOVER/drivers64UEFI/HFSPlus.efi`]({{ site.url }}/assets/macOS-bog-G2-i7/HFSPlus.efi.zip)
+Make sure to delete `/EFI/CLOVER/drivers64UEFI/VBoxHfs-64.efi` and replace it with [`/EFI/CLOVER/drivers64UEFI/HFSPlus.efi`](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/HFSPlus.efi.zip)
 
-Use the [`/EFI/CLOVER/config.plist`]({{ site.url }}/assets/macOS-bog-G2-i7/unibeast.config.plist)
+Use the [`/EFI/CLOVER/config.plist`](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/unibeast.config.plist)
 
 and you are ready
 
@@ -1003,7 +998,7 @@ Install clover on the Macintosh HD 'Clover_v2.3k_r3974.zip':
 * Install RC scripts on target volume
 * Install Clover Preference Pane
 
-Place the [multibeast]({{ site.url }}/assets/macOS-bog-G2-i7/10.12.kexts.tgz) versions of the following kexts in `EFI/CLOVER/kexts/10.12`:
+Place the [multibeast](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/10.12.kexts.tgz) versions of the following kexts in `EFI/CLOVER/kexts/10.12`:
 
 * [USBInjectAll.kext](https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads)
 * [FakeSMC*.kext](https://github.com/kozlek/HWSensors/releases)
@@ -1012,9 +1007,9 @@ Place the [multibeast]({{ site.url }}/assets/macOS-bog-G2-i7/10.12.kexts.tgz) ve
 
 Mount the EFI partition with a tool like clover configurator.
 
-Make sure to delete `/EFI/CLOVER/drivers64UEFI/VBoxHfs-64.efi` and replace it with [`/EFI/CLOVER/drivers64UEFI/HFSPlus.efi`]({{ site.url }}/assets/macOS-bog-G2-i7/HFSPlus.efi.zip)
+Make sure to delete `/EFI/CLOVER/drivers64UEFI/VBoxHfs-64.efi` and replace it with [`/EFI/CLOVER/drivers64UEFI/HFSPlus.efi`](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/HFSPlus.efi.zip)
 
-Use the [`/EFI/CLOVER/config.plist`]({{ site.url }}/assets/macOS-bog-G2-i7/10.12.2.config.plist)
+Use the [`/EFI/CLOVER/config.plist`](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/10.12.2.config.plist)
 
 Boot directly from disk and run a brief benchmark with Geekbench:
 
