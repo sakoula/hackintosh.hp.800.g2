@@ -49,7 +49,7 @@ Table of Contents
 
 Created partially by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
-### Software Repository ###
+# Software Repository #
 [up up up](#)
 
 All software used for the machine to install 10.12 can be found in [{{site.sources}}/hackintosh.10.12.wks-0088-25](file://{{site.sources}}/hackintosh.10.12.wks-0088-25) 
