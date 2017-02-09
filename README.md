@@ -1,4 +1,4 @@
-Installing and configuring macOS on bog for a 'HP EliteDesk 800 G2 TWR'
+#Installing and configuring macOS on bog for a 'HP EliteDesk 800 G2 TWR'#
 
 Table of Contents
 =================
