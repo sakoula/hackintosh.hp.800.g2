@@ -54,7 +54,7 @@ Created partially by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc
 
 All software used for the machine to install 10.12 can be found in [{{site.sources}}/hackintosh.10.12.wks-0088-25](file://{{site.sources}}/hackintosh.10.12.wks-0088-25) 
 
-### Hardware Specs ###
+# Hardware Specs #
 [up up up](#)
 
 * Product Number: L1G77AV
@@ -75,14 +75,14 @@ hardware configuration with the following specs:
 
 full specs from the [HP site](http://store.hp.com/us/en/pdp/hp-elitedesk-800-g2-tower-pc-p-w5x93ut-aba--1)
 
-### Windows Setup ###
+# Windows Setup #
 
-#### Install Windows ####
+## Install Windows ##
 [up up up](#)
 
 Use [Rufus](https://rufus.akeo.ie/) to create a bootable USB stick with windows10 enterprise 64-bit
 
-#### Drivers and BIOS ####
+## Drivers and BIOS ##
 [up up up](#)
 
 Install on one disk Windows 10 and make sure that you check with this [link](http://support.hp.com/us-en/product/hp-elitedesk-800-g2-tower-pc/7633297/drivers) to update drivers and BIOS.
@@ -99,7 +99,7 @@ installed:
 * `sp78416`: Intel Graphics Driver 21.20.16.4528 (HD 530)
 * `sp77049`: Intel I219 NIC 21.0_12.15.23.1
 
-#### Configure BIOS Settings ####
+## Configure BIOS Settings ##
 [up up up](#)
 
 * ~~Broke Raid without any problem on booting from one disk~~ (computer came with no raid)
@@ -126,7 +126,7 @@ installed:
 * `Advanced > Power Management Options > Unique Sleep State Blink Rates` **Unchecked**
 * `Advanced > Remote Management Options > Active Management (AMT)` **Unchecked**
 
-#### Benchmarking Windows 10 ####
+## Benchmarking Windows 10 ##
 [up up up](#)
 
 * `GeekBench x64 4.0.3 CPU` 4796/15263
@@ -144,12 +144,12 @@ installed:
 * `LuxMark-v3.1 Native C++` 2569
 * `LuxMark-v3.1 Native C++` 2532
 
-### Install using Multibeast ###
+# Install using Multibeast #
 [up up up](#)
 
 Initially I installed the machine using multibeast. I wanted to get it up fast to check the hardware under OSX.
 
-#### Prepate USB stick ####
+## Prepate USB stick ##
 [up up up](#)
 
 https://www.tonymacx86.com/threads/unibeast-install-macos-sierra-on-any-supported-intel-based-pc.200564/
@@ -160,7 +160,7 @@ format usb stick:
 * Name: USB
 * Format: MacOS Extended (Journaled)
 
-#### Use Unibeast ####
+## Use Unibeast ##
 [up up up](#)
 
 download and run `Unibeast (7.0.1)` which includes `Clover EFI v2.3 r3766`
@@ -169,7 +169,7 @@ select `UEFI Boot Mode` and create an installation **USB Stick**.
 
 I examined the configuration on the **USB stick** and it is the following:
 
-##### Clover `config.plist` #####
+### Clover `config.plist` ###
 
 * `Boot > darkware`
 * `Boot > dart=0` # this disabled the Vtd if enabled on OSX
@@ -238,13 +238,13 @@ dart=0
 Disables the VT-d virtualization technology built into certain Intel processors. For Hackintoshes, VT-d is pretty useless; virtually no Mac OS X applications use it (virtualization apps like Virtualbox tend to use the alternative VT-x technology instead), and certain Hackintosh motherboards have been known to crash in Mac OS X when VT-d is enabled.
 ```
 
-##### Clover Configuration #####
+### Clover Configuration ###
 
 * `Install for UEFI booting only`
 * `Install Clover in the ESP`
 * `Drivers64UEFI > OsxAptioFix2Drv-64`
 
-##### Clover Kexts #####
+### Clover Kexts ###
 
 The following kexts have been installed in `EFI/CLOVER/kexts/10.11`:
 
@@ -254,10 +254,10 @@ The following kexts have been installed in `EFI/CLOVER/kexts/10.11`:
 * `RealtekRTL8111.kext`
 * `USBInjectAll.kext`
 
-#### Install Sierra 10.12.2 ####
+## Install Sierra 10.12.2 ##
 [up up up](#)
 
-##### Install OSX #####
+### Install OSX ###
 
 unplug everything but two disk / keyboard / wired mouse.
 
@@ -271,7 +271,7 @@ Install OSX.
 
 > Have in mind that in order to boot OSX directly from the installed partition you need to have clover installed on the partition. During the installation procedure and on the first time that you boot on your freshly installed OS you need to boot from the **USB Stick** and select the disk partition that you have installed OSX.
 
-##### Run Multibeast #####
+### Run Multibeast ###
 
 Finally boot using the **USB Stick** on OSX, run the latest multibeast and select:
 
@@ -293,7 +293,7 @@ Finally boot using the **USB Stick** on OSX, run the latest multibeast and selec
 
 > **Notice** : MultiBeast installs all kexts in `/Library/Extensions`. When tested Voodoo did not had correct permissions, and had to fix manually
 
-##### Inspect configuration #####
+### Inspect configuration ###
 
 **config.plist**
 
@@ -385,15 +385,15 @@ The following kexts have been installed in `/Library/Extensions`:
 * VoodooHDA.kext
 * USBInjectAll.kext
 
-#### Additional tweaks ####
+## Additional tweaks ##
 [up up up](#)
 
-##### HFSPlus for VBoxHfs-64 #####
+### HFSPlus for VBoxHfs-64 ###
 [up up up](#)
 
 In the EFI partition `EFI/CLOVER/drivers64UEFI/` erase `VBoxHfs-64.efi` and use `HFSPlus.efi`. HFSPlus can be found in the `Install Drivers` section of [clover configurator](http://mackie100projects.altervista.org/download-clover-configurator/)
 
-##### USB clover patch #####
+### USB clover patch ###
 [up up up](#)
 
 In clover the `KextsToPatch` for `Comment change 15 port limit to 26 in XHCI kext` changes the port limit. The original post for the skylake Q170 HP is [this post](https://www.tonymacx86.com/threads/usb-new-raise-port-limit-patch-for-macos-10-12-sierra.202329/):
@@ -411,8 +411,7 @@ In clover the `KextsToPatch` for `Comment change 15 port limit to 26 in XHCI kex
       </dict>
 ```
 
-
-##### SSDT gen #####
+### SSDT gen ###
 [up up up](#)
 
 For speedstepping I can use either the `ACPI > Generate PStates` and `ACPI > Generate CStates` from clover or go with the Pike's script [ssdtPRGen.sh](https://github.com/Piker-Alpha/ssdtPRGen.sh)
@@ -460,12 +459,12 @@ $ ./ssdtPRGen.sh
 * `cp ~/Library/ssdtPRGen/ssdt.aml /Volumes/EFI/EFI/CLOVER/ACPI/patched`
 * `Acpi->SortedOrder add SSDT.aml to the list`
 
-##### VoodooHDA glitch #####
+### VoodooHDA glitch ###
 [up up up](#)
 
 While booting there is a sound loop glitch. This starts in the very first beginning when booting up (clover -v) and stops at some point on login screen. The solution is to use the latest VoodooHDA (>=2.8.9) driver which can be downloaded from [VoodooHDA site](https://sourceforge.net/projects/voodoohda/). I found it from [this post](http://www.insanelymac.com/forum/topic/314406-voodoohda-289/)
 
-##### Video artifacts #####
+### Video artifacts ###
 [up up up](#)
 
 **In order to make things work you MUST increase the video RAM on the BIOS.**
@@ -588,7 +587,7 @@ You need to do in addition to the inject Intel and ig-platform-id in clover:
     </array>
 ```
 
-##### Video second monitor #####
+### Video second monitor ###
 [up up up](#)
 
 For the Skylake HD530 there is a known issue that you cannot boot with two monitors attached. The machine during boot just panics and reboots.
@@ -702,7 +701,7 @@ In the same page **wildwillow** wrote:
 Can you boot each monitor individually and make a copy of IOReg and attach it here.
 Happy New Year too!
 
-##### Video second monitor >= 10.12.3 #####
+### Video second monitor >= 10.12.3 ###
 [up up up](#)
 
 When I upgraded in 10.12.3 my second monitor was not even detected. I applied the **Option 1** and **Option 2** from the previous thread.
@@ -711,7 +710,7 @@ However I still have the following problem. When I lock the screen which makes t
 
 The original 10.12.2 `AppleGraphicsControl.kext` is located [here]({{ site.url }}/assets/macOS-bog-G2-i7/AppleGraphicsControl.kext.10.12.2.tgz)
 
-##### Video Performance #####
+### Video Performance ###
 [up up up](#)
 
 When I boot I always get the following messages prior getting to the GUI:
@@ -795,7 +794,7 @@ HD530 is not well supported...
 ```
 
 
-##### Install RC scripts on target volume #####
+### Install RC scripts on target volume ###
 [up up up](#)
 
 NVRAM is used to store parameters in the parameters in the form of `MyVar=TestValue`. This is important for iMessage to work. Not all Skylake motherboards support this (although older ones support this).
@@ -826,27 +825,27 @@ Check the scripts at
 
 I found this very nice thread called [Everything you need to know about NVRAM](http://www.insanelymac.com/forum/topic/298027-guide-aio-guides-for-hackintosh/page-2#entry2029552).
 
-##### BIOS time :gun: #####
+### BIOS time :gun: ###
 
 Sometimes when I reboot it detects and complains that the clock has been resetted. I setup the BIOS clock to UTC which is GMT-2 for the winter and then use bankofgreece NTP for the settings.
 
 **I suspect that it has to do that I set up the BIOS clock with GMT+2 and then OSX tries to setup the hardware clock again. Perhaps GMT or something. And in the next reboot it complains**.
 
-##### System Preferences > Energy Saver #####
+### System Preferences > Energy Saver ###
 
 * The `System Preferences > Energy Saver` panel has changed
 
 *before*
 
-![sierra.energy.before]({{ site.url }}/assets/sierra.energy.before.png)
+![sierra.energy.before](assets/sierra.energy.before.png)
 
 *after*
 
-![sierra.energy.after]({{ site.url }}/assets/sierra.energy.after.png)
+![sierra.energy.after](assets/sierra.energy.after.png)
 
 > **Note**: This is most likely to the iMac17,1 SMBIOS setting
 
-##### Reboots on Shutdown #####
+### Reboots on Shutdown ###
 [up up up](#)
 
 * When I shutdown the machine reboots
@@ -854,7 +853,7 @@ Sometimes when I reboot it detects and complains that the clock has been resette
 **FIXED** check [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-restarts-instead-of-shut-down/), by enabling `S5 Maximum Power Savings` in the BIOS.
 
 
-##### Disk Renumbering #####
+### Disk Renumbering ###
 
 * Disk renumbering on reboot sometimes the SSD is `disk0` sometimes `disk1`
 
@@ -925,7 +924,7 @@ bash: /etc/rc.server: No such file or directory
 
 > According to the [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-restarts-instead-of-shut-down/) it does not matter so it can be considered solved.
 
-##### DSDT #####
+### DSDT ###
 [up up up](#)
 
 Extract DSDT with clover installed on a FAT32 stick. Boot on the loader on the main screen hit `F4`. 
@@ -942,10 +941,10 @@ check the [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-
 
 **But I am not using it**
 
-### Install 10.12 my way manually ###
+# Install 10.12 my way manually #
 [up up up](#)
 
-#### Prepare USB stick ####
+## Prepare USB stick ##
 [up up up](#)
 
 format usb stick:
@@ -960,7 +959,7 @@ use command to install sierra to the stick:
 sudo /Applications/Install\ macOS\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/USB --applicationpath /Applications/Install\ macOS\ Sierra.app --nointeraction
 ```
 
-#### Install Clover USB stick ####
+## Install Clover USB stick ##
 [up up up](#)
 
 get clover `Clover_v2.3k_r3974.zip` from [sourceforge.net](http://sourceforge.net/projects/cloverefiboot/) 
@@ -983,14 +982,14 @@ Use the [`/EFI/CLOVER/config.plist`]({{ site.url }}/assets/macOS-bog-G2-i7/unibe
 
 and you are ready
 
-#### Install Sierra 10.12.2 ####
+## Install Sierra 10.12.2 ##
 [up up up](#)
 
 unplug everything but two disks / keyboard / wired mouse.
 
 On the installer open disk utility and format the boot disk as `GUID Partition Map`/`Macintosh HD`/`Mac OS Extended (Journaled)`
 
-#### Configure Sierra 10.12.2 ####
+## Configure Sierra 10.12.2 ##
 [up up up](#)
 
 get clover `Clover_v2.3k_r3974.zip` from [sourceforge.net](http://sourceforge.net/projects/cloverefiboot/) 
@@ -1022,7 +1021,7 @@ Boot directly from disk and run a brief benchmark with Geekbench:
 * `GeekBench x64 4.0.3 CPU` 5072/15818
 * `GeekBench x64 4.0.3 GPU/OpenCl` 19516
 
-#### System Preferences Initial Configuration ####
+## System Preferences Initial Configuration ##
 [up up up](#)
 
 * Energy Saver > Turn display off after: **never** (*I noticed that when I lock the screen the display goes odd anyway, I want it on when I am there*)
@@ -1030,7 +1029,7 @@ Boot directly from disk and run a brief benchmark with Geekbench:
 * Energy Saver > Prevent computer from sleeping automtically when the display is off **checked**
 * Energy Saver > Enable Power Nap **unchecked**
 
-### Benchmarking Sierra 10.12.2 ###
+# Benchmarking Sierra 10.12.2 #
 [up up up](#)
 
 * `GeekBench x64 4.0.3 CPU` 5057/15699
@@ -1072,7 +1071,7 @@ As I wrote in [this thread](http://www.insanelymac.com/forum/topic/319724-skylak
  
 I assume that it is ok since the support of the HD530 is not as good as in Windows
 
-### HDD/SSD performance ###
+# HDD/SSD performance #
 [up up up](#)
 
 * `AJA SanDisk (no trim) SD7SB3Q-256G-1006 Revision X2180006: 356MB/sec write, 412MB/sec read`
@@ -1393,7 +1392,7 @@ Selective self-test flags (0x0):
 If Selective self-test is pending on power-up, resume after 0 minute delay.
 ```
 
-### Upgrade to 10.12.3 ###
+# Upgrade to 10.12.3 #
 [up up up](#)
 
 check link at [tonymac](https://www.tonymacx86.com/threads/macos-10-12-3-update.212177/)
@@ -1404,7 +1403,7 @@ Goto `System Preferences > Clover > Check Now > Update` and follow the [Install 
 
 > **Note:** I had problems with the second monitor and making it work. It seems that I had to remove the config.plist `Kernel and Kext Patchs > AppleGraphicsDevicePolicy` patch and patch the `AppleGraphicsControl.kext`. I have not tested rebuilding all the kexts.
 
-### References ###
+# References #
 [up up up](#)
 
 * [10.11.4+ Skylake Starter Guide](http://www.tonymacx86.com/threads/10-11-4-skylake-starter-guide.193628/)
@@ -1412,7 +1411,7 @@ Goto `System Preferences > Clover > Check Now > Update` and follow the [Install 
 * [Skylake Intel HD 530 Integrated Graphics Working as of 10.11.4](http://www.tonymacx86.com/threads/skylake-intel-hd-530-integrated-graphics-working-as-of-10-11-4.188891/)
 * [http://h20564.www2.hp.com/hpsc/swd/public/readIndex?sp4ts.oid=7633299&swLangOid=8&swEnvOid=4192](http://h20564.www2.hp.com/hpsc/swd/public/readIndex?sp4ts.oid=7633299&swLangOid=8&swEnvOid=4192)
 
-### Software ###
+# Software #
 [up up up](#)
 
 * [clover configurator](http://mackie100projects.altervista.org/download-clover-configurator/)
