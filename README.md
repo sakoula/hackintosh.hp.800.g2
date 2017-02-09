@@ -3,7 +3,6 @@
 Table of Contents
 =================
 
-* [Software Repository](#software-repository)
 * [Hardware Specs](#hardware-specs)
 * [Windows Setup](#windows-setup)
     * [Install Windows](#install-windows)
