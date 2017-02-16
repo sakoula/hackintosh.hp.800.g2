@@ -3,52 +3,54 @@
 Table of Contents
 =================
 
-* [Hardware Specs](#hardware-specs)
-* [Windows Setup](#windows-setup)
+* [categories: hackintosh elcapitan sierra bog](#categories-hackintosh-elcapitan-sierra-bog)
+ * [Software Repository](#software-repository)
+ * [Hardware Specs](#hardware-specs)
+ * [Windows Setup](#windows-setup)
     * [Install Windows](#install-windows)
     * [Drivers and BIOS](#drivers-and-bios)
     * [Configure BIOS Settings](#configure-bios-settings)
     * [Benchmarking Windows 10](#benchmarking-windows-10)
-* [Install using Multibeast](#install-using-multibeast)
+ * [Install using Multibeast](#install-using-multibeast)
     * [Prepate USB stick](#prepate-usb-stick)
     * [Use Unibeast](#use-unibeast)
-        * [Clover config.plist](#clover-configplist)
-        * [Clover Configuration](#clover-configuration)
-        * [Clover Kexts](#clover-kexts)
+       * [Clover config.plist](#clover-configplist)
+       * [Clover Configuration](#clover-configuration)
+       * [Clover Kexts](#clover-kexts)
     * [Install Sierra 10.12.2](#install-sierra-10122)
-        * [Install OSX](#install-osx)
-        * [Run Multibeast](#run-multibeast)
-        * [Inspect configuration](#inspect-configuration)
+       * [Install OSX](#install-osx)
+       * [Run Multibeast](#run-multibeast)
+       * [Inspect configuration](#inspect-configuration)
     * [Additional tweaks](#additional-tweaks)
-        * [HFSPlus for VBoxHfs-64](#hfsplus-for-vboxhfs-64)
-        * [USB clover patch](#usb-clover-patch)
-        * [SSDT gen](#ssdt-gen)
-        * [VoodooHDA glitch](#voodoohda-glitch)
-        * [Video artifacts](#video-artifacts)
-        * [Video second monitor](#video-second-monitor)
-        * [Video second monitor &gt;= 10.12.3](#video-second-monitor--10123)
-        * [Video Performance](#video-performance)
-        * [Install RC scripts on target volume](#install-rc-scripts-on-target-volume)
-        * [BIOS time <g-emoji alias="gun" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f52b.png" ios-version="6.0">🔫</g-emoji>](#bios-time-gun)
+       * [HFSPlus for VBoxHfs-64](#hfsplus-for-vboxhfs-64)
+       * [USB clover patch](#usb-clover-patch)
+       * [SSDT gen](#ssdt-gen)
+       * [VoodooHDA glitch](#voodoohda-glitch)
+       * [Video artifacts](#video-artifacts)
+       * [Video second monitor](#video-second-monitor)
+       * [Video second monitor &gt;= 10.12.3](#video-second-monitor--10123)
+       * [Video Performance](#video-performance)
+       * [Install RC scripts on target volume](#install-rc-scripts-on-target-volume)
+       * [BIOS time <g-emoji alias="gun" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f52b.png" ios-version="6.0">🔫</g-emoji>](#bios-time-gun)
        * [System Preferences &gt; Energy Saver](#system-preferences--energy-saver)
        * [Reboots on Shutdown](#reboots-on-shutdown)
        * [Disk Renumbering](#disk-renumbering)
        * [DSDT](#dsdt)
-* [Install 10.12 my way manually](#install-1012-my-way-manually)
+ * [Install 10.12 my way manually](#install-1012-my-way-manually)
     * [Prepare USB stick](#prepare-usb-stick)
     * [Install Clover USB stick](#install-clover-usb-stick)
     * [Install Sierra 10.12.2](#install-sierra-10122-1)
     * [Configure Sierra 10.12.2](#configure-sierra-10122)
     * [System Preferences Initial Configuration](#system-preferences-initial-configuration)
-* [Benchmarking Sierra 10.12.2](#benchmarking-sierra-10122)
-* [HDD/SSD performance](#hddssd-performance)
-* [Upgrade to 10.12.3](#upgrade-to-10123)
-* [References](#references)
-* [Software](#software)
+ * [Benchmarking Sierra 10.12.2](#benchmarking-sierra-10122)
+ * [HDD/SSD performance](#hddssd-performance)
+ * [Upgrade to 10.12.3](#upgrade-to-10123)
+ * [References](#references)
+ * [Software](#software)
 
 Created partially by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
-# Hardware Specs #
+### Hardware Specs ###
 [up up up](#)
 
 * Product Number: L1G77AV
@@ -69,19 +71,17 @@ hardware configuration with the following specs:
 
 full specs from the [HP site](http://store.hp.com/us/en/pdp/hp-elitedesk-800-g2-tower-pc-p-w5x93ut-aba--1)
 
-# Windows Setup #
+### Windows Setup ###
 
-## Install Windows ##
+#### Install Windows ####
 [up up up](#)
 
 Use [Rufus](https://rufus.akeo.ie/) to create a bootable USB stick with windows10 enterprise 64-bit
 
-## Drivers and BIOS ##
+#### Drivers and BIOS ####
 [up up up](#)
 
 Install on one disk Windows 10 and make sure that you check with this [link](http://support.hp.com/us-en/product/hp-elitedesk-800-g2-tower-pc/7633297/drivers) to update drivers and BIOS.
-
-boot on windows and it shown `10.130.22.180` as the main IP.
 
 installed:
 
@@ -93,7 +93,7 @@ installed:
 * `sp78416`: Intel Graphics Driver 21.20.16.4528 (HD 530)
 * `sp77049`: Intel I219 NIC 21.0_12.15.23.1
 
-## Configure BIOS Settings ##
+#### Configure BIOS Settings ####
 [up up up](#)
 
 * ~~Broke Raid without any problem on booting from one disk~~ (computer came with no raid)
@@ -120,7 +120,7 @@ installed:
 * `Advanced > Power Management Options > Unique Sleep State Blink Rates` **Unchecked**
 * `Advanced > Remote Management Options > Active Management (AMT)` **Unchecked**
 
-## Benchmarking Windows 10 ##
+#### Benchmarking Windows 10 ####
 [up up up](#)
 
 * `GeekBench x64 4.0.3 CPU` 4796/15263
@@ -138,12 +138,12 @@ installed:
 * `LuxMark-v3.1 Native C++` 2569
 * `LuxMark-v3.1 Native C++` 2532
 
-# Install using Multibeast #
+### Install using Multibeast ###
 [up up up](#)
 
 Initially I installed the machine using multibeast. I wanted to get it up fast to check the hardware under OSX.
 
-## Prepate USB stick ##
+#### Prepate USB stick ####
 [up up up](#)
 
 https://www.tonymacx86.com/threads/unibeast-install-macos-sierra-on-any-supported-intel-based-pc.200564/
@@ -154,7 +154,7 @@ format usb stick:
 * Name: USB
 * Format: MacOS Extended (Journaled)
 
-## Use Unibeast ##
+#### Use Unibeast ####
 [up up up](#)
 
 download and run `Unibeast (7.0.1)` which includes `Clover EFI v2.3 r3766`
@@ -163,7 +163,7 @@ select `UEFI Boot Mode` and create an installation **USB Stick**.
 
 I examined the configuration on the **USB stick** and it is the following:
 
-### Clover `config.plist` ###
+##### Clover `config.plist` #####
 
 * `Boot > darkware`
 * `Boot > dart=0` # this disabled the Vtd if enabled on OSX
@@ -232,13 +232,13 @@ dart=0
 Disables the VT-d virtualization technology built into certain Intel processors. For Hackintoshes, VT-d is pretty useless; virtually no Mac OS X applications use it (virtualization apps like Virtualbox tend to use the alternative VT-x technology instead), and certain Hackintosh motherboards have been known to crash in Mac OS X when VT-d is enabled.
 ```
 
-### Clover Configuration ###
+##### Clover Configuration #####
 
 * `Install for UEFI booting only`
 * `Install Clover in the ESP`
 * `Drivers64UEFI > OsxAptioFix2Drv-64`
 
-### Clover Kexts ###
+##### Clover Kexts #####
 
 The following kexts have been installed in `EFI/CLOVER/kexts/10.11`:
 
@@ -248,10 +248,10 @@ The following kexts have been installed in `EFI/CLOVER/kexts/10.11`:
 * `RealtekRTL8111.kext`
 * `USBInjectAll.kext`
 
-## Install Sierra 10.12.2 ##
+#### Install Sierra 10.12.2 ####
 [up up up](#)
 
-### Install OSX ###
+##### Install OSX #####
 
 unplug everything but two disk / keyboard / wired mouse.
 
@@ -265,7 +265,7 @@ Install OSX.
 
 > Have in mind that in order to boot OSX directly from the installed partition you need to have clover installed on the partition. During the installation procedure and on the first time that you boot on your freshly installed OS you need to boot from the **USB Stick** and select the disk partition that you have installed OSX.
 
-### Run Multibeast ###
+##### Run Multibeast #####
 
 Finally boot using the **USB Stick** on OSX, run the latest multibeast and select:
 
@@ -287,7 +287,7 @@ Finally boot using the **USB Stick** on OSX, run the latest multibeast and selec
 
 > **Notice** : MultiBeast installs all kexts in `/Library/Extensions`. When tested Voodoo did not had correct permissions, and had to fix manually
 
-### Inspect configuration ###
+##### Inspect configuration #####
 
 **config.plist**
 
@@ -379,15 +379,15 @@ The following kexts have been installed in `/Library/Extensions`:
 * VoodooHDA.kext
 * USBInjectAll.kext
 
-## Additional tweaks ##
+#### Additional tweaks ####
 [up up up](#)
 
-### HFSPlus for VBoxHfs-64 ###
+##### HFSPlus for VBoxHfs-64 #####
 [up up up](#)
 
 In the EFI partition `EFI/CLOVER/drivers64UEFI/` erase `VBoxHfs-64.efi` and use `HFSPlus.efi`. HFSPlus can be found in the `Install Drivers` section of [clover configurator](http://mackie100projects.altervista.org/download-clover-configurator/)
 
-### USB clover patch ###
+##### USB clover patch #####
 [up up up](#)
 
 In clover the `KextsToPatch` for `Comment change 15 port limit to 26 in XHCI kext` changes the port limit. The original post for the skylake Q170 HP is [this post](https://www.tonymacx86.com/threads/usb-new-raise-port-limit-patch-for-macos-10-12-sierra.202329/):
@@ -405,7 +405,8 @@ In clover the `KextsToPatch` for `Comment change 15 port limit to 26 in XHCI kex
       </dict>
 ```
 
-### SSDT gen ###
+
+##### SSDT gen #####
 [up up up](#)
 
 For speedstepping I can use either the `ACPI > Generate PStates` and `ACPI > Generate CStates` from clover or go with the Pike's script [ssdtPRGen.sh](https://github.com/Piker-Alpha/ssdtPRGen.sh)
@@ -453,12 +454,12 @@ $ ./ssdtPRGen.sh
 * `cp ~/Library/ssdtPRGen/ssdt.aml /Volumes/EFI/EFI/CLOVER/ACPI/patched`
 * `Acpi->SortedOrder add SSDT.aml to the list`
 
-### VoodooHDA glitch ###
+##### VoodooHDA glitch #####
 [up up up](#)
 
 While booting there is a sound loop glitch. This starts in the very first beginning when booting up (clover -v) and stops at some point on login screen. The solution is to use the latest VoodooHDA (>=2.8.9) driver which can be downloaded from [VoodooHDA site](https://sourceforge.net/projects/voodoohda/). I found it from [this post](http://www.insanelymac.com/forum/topic/314406-voodoohda-289/)
 
-### Video artifacts ###
+##### Video artifacts #####
 [up up up](#)
 
 **In order to make things work you MUST increase the video RAM on the BIOS.**
@@ -466,125 +467,51 @@ While booting there is a sound loop glitch. This starts in the very first beginn
 Apparently there are a lot of issues with the Skylake HD 530 GPU. After increasing the DVMT preallocated memory to maximum on the BIOS in order to make it boot, and patching using Multibeast there are glitches that appear on the upper left. The solution is described in [this thread](http://www.insanelymac.com/forum/topic/317551-glitch-fix-for-skylake-hd-graphicsupdate/) and in [this](https://www.tonymacx86.com/threads/skylake-intel-hd-530-graphics-glitch-fix.206410/). Prefer the insanelymac.
 
 You need to do in addition to the inject Intel and ig-platform-id in clover:
-* `Kernel And Kext Patches > KextsToPatch > change GFX0 to IGPU`
+
+* `Kernel And Kext Patches > KextsToPatch > change GFX0 to IGPU`. After installing it I checked with `MaciASL` that the GFX0 was actually changed in IGPU in the DSDT. I am not 100% sure that this is required
 
 ```xml
-<dict>
-  <key>Comment</key>
-  <string>change GFX0 to IGPU</string>
-  <key>Disabled</key>
-  <false/>
-  <key>Find</key>
-  <data>
-  R0ZYMA==
-  </data>
-  <key>Replace</key>
-  <data>
-  SUdQVQ==
-  </data>
-</dict>
+    <dict>
+            <key>Comment</key>
+            <string>change GFX0 to IGPU</string>
+            <key>Disabled</key>
+            <true/>
+            <key>Find</key>
+            <data>
+            R0ZYMA==
+            </data>
+            <key>Replace</key>
+            <data>
+            SUdQVQ==
+            </data>
+    </dict>
 ```
 
-* `Devices > Add Properties`
+* `Devices > Add Properties`. I left only the following which was the one that was required. This is based on [this insanelymac post](http://www.insanelymac.com/forum/topic/317551-glitch-fix-for-skylake-hd-graphicsupdate/) and [this tonymacx86 post](https://www.tonymacx86.com/threads/skylake-intel-hd-530-graphics-glitch-fix.206410/) that references the [PikerAlpha's post](https://pikeralpha.wordpress.com/2016/10/30/aapl-properties-for-skylake-graphics/)
 
 ```xml
     <key>AddProperties</key>
     <array>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>AAPL,Gfx324</string>
-        <key>Value</key>
-        <data>
-        AQAAAA==
-        </data>
-      </dict>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>AAPL,GfxYTile</string>
-        <key>Value</key>
-        <data>
-        AQAAAA==
-        </data>
-      </dict>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>AAPL00,PanelCycleDelay</string>
-        <key>Value</key>
-        <data>
-        +gAAAA==
-        </data>
-      </dict>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>AAPL00,PanelPowerDown</string>
-        <key>Value</key>
-        <data>
-        PAAAAA==
-        </data>
-      </dict>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>AAPL00,PanelPowerOff</string>
-        <key>Value</key>
-        <data>
-        EQAAAA==
-        </data>
-      </dict>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>AAPL00,PanelPowerOn</string>
-        <key>Value</key>
-        <data>
-        GQEAAA==
-        </data>
-      </dict>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>AAPL00,PanelPowerUp</string>
-        <key>Value</key>
-        <data>
-        MAAAAA==
-        </data>
-      </dict>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>graphic-options</string>
-        <key>Value</key>
-        <data>
-        DAAAAA==
-        </data>
-      </dict>
-      <dict>
-        <key>Device</key>
-        <string>IntelGFX</string>
-        <key>Key</key>
-        <string>hda-gfx</string>
-        <key>Value</key>
-        <string>onboard-1</string>
-      </dict>
+            <dict>
+                    <key>Device</key>
+                    <string>IntelGFX</string>
+                    <key>Key</key>
+                    <string>AAPL,GfxYTile</string>
+                    <key>Value</key>
+                    <data>
+                    AQAAAA==
+                    </data>
+            </dict>
     </array>
 ```
 
-### Video second monitor ###
+##### Video second monitor #####
 [up up up](#)
 
 For the Skylake HD530 there is a known issue that you cannot boot with two monitors attached. The machine during boot just panics and reboots.
+
+I end up using aaaaa
+
 
 In order to fix it you need to follow [this thread](https://www.tonymacx86.com/threads/black-screen-with-macpro-6-1-or-imac-15-or-imac-17-system-definition.183113/). Read further to see how to install it.
 
@@ -623,7 +550,7 @@ Assuming that you have a single discreet card (just the HD530) then you can appl
 
 **Option 2**
 
-Alternative you can use `AGDPfix.v1.3.zip` which patches ` the /System/Library/Extensions/AppleGraphicsControl.kext/Contents/PlugIns/AppleGraphicsDevicePolicy.kext/Contents/Info.plist` 
+Alternative you can use `AGDPfix.v1.3.zip` which patches the `/System/Library/Extensions/AppleGraphicsControl.kext/Contents/PlugIns/AppleGraphicsDevicePolicy.kext/Contents/Info.plist` 
 
 This is what the `AGDPfix` does:
 
@@ -695,16 +622,26 @@ In the same page **wildwillow** wrote:
 Can you boot each monitor individually and make a copy of IOReg and attach it here.
 Happy New Year too!
 
-### Video second monitor >= 10.12.3 ###
+##### Video second monitor >= 10.12.3 #####
 [up up up](#)
 
-When I upgraded in 10.12.3 my second monitor was not even detected. I applied the **Option 1** and **Option 2** from the previous thread.
+After upgrading to 10.12.3 I have the following problem. When I lock the screen which makes the monitors sleep (and power off) my computer reboots! This is happening when I have the two monitors attached. When I just have one of them the computer behaves as expected.
 
-However I still have the following problem. When I lock the screen which makes the monitors sleep (and power off) my computer reboots! This is happening when I have the two monitors attached. When I just have one of them the computer behaves as expected.
+I end up doing the following (**This is only required when you have two monitors attached to the computer. In case you have only one there is no problem**):
 
-The original 10.12.2 `AppleGraphicsControl.kext` is located [here](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/AppleGraphicsControl.kext.10.12.2.tgz)
+- use **Option 1** from the previous paragraph
+- use the DSDT patch from [this thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-restarts-instead-of-shut-down/) which is located here [DSDT.sakoula.zip](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/DSDT.sakoula.zip)
 
-### Video Performance ###
+In order to boot/reboot etc has to be the following:
+
+- from the power off state you need to boot with a single monitor attached.
+- reboot from OSX at least once with one monitor attached.
+- one you have rebooted from osx and you have logged in your machine you can plug the second monitor.
+- locking the computer will not reboot it.
+- if you shutdown the computer you need to unplug the power for 30sec to 1min in order to be able to power it up again.
+- when you need to reboot the computer always do it with one monitor plugged in.
+
+##### Video Performance #####
 [up up up](#)
 
 When I boot I always get the following messages prior getting to the GUI:
@@ -788,7 +725,7 @@ HD530 is not well supported...
 ```
 
 
-### Install RC scripts on target volume ###
+##### Install RC scripts on target volume #####
 [up up up](#)
 
 NVRAM is used to store parameters in the parameters in the form of `MyVar=TestValue`. This is important for iMessage to work. Not all Skylake motherboards support this (although older ones support this).
@@ -819,14 +756,20 @@ Check the scripts at
 
 I found this very nice thread called [Everything you need to know about NVRAM](http://www.insanelymac.com/forum/topic/298027-guide-aio-guides-for-hackintosh/page-2#entry2029552).
 
-### BIOS time :gun: ###
+##### BIOS time :gun: #####
 [up up up](#)
 
 Sometimes when I reboot it detects and complains that the clock has been resetted. I setup the BIOS clock to UTC which is GMT-2 for the winter and then use bankofgreece NTP for the settings.
 
 **I suspect that it has to do that I set up the BIOS clock with GMT+2 and then OSX tries to setup the hardware clock again. Perhaps GMT or something. And in the next reboot it complains**.
 
-### System Preferences > Energy Saver ###
+the exact message I get is:
+
+```console
+Real Time Power Loss 005
+```
+
+##### System Preferences > Energy Saver #####
 [up up up](#)
 
 * The `System Preferences > Energy Saver` panel has changed
@@ -839,17 +782,16 @@ Sometimes when I reboot it detects and complains that the clock has been resette
 
 ![sierra.energy.after](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/sierra.energy.after.png)
 
-> **Note**: This is most likely to the iMac17,1 SMBIOS setting
+> **Note**: If you do not autogenerate the P-states in clover you will get the good old panel. This is the new look of the panel and it is what you want.
 
-### Reboots on Shutdown ###
+##### Reboots on Shutdown #####
 [up up up](#)
 
 * When I shutdown the machine reboots
 
 **FIXED** check [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-restarts-instead-of-shut-down/), by enabling `S5 Maximum Power Savings` in the BIOS.
 
-
-### Disk Renumbering ###
+##### Disk Renumbering #####
 [up up up](#)
 
 * Disk renumbering on reboot sometimes the SSD is `disk0` sometimes `disk1`
@@ -921,7 +863,7 @@ bash: /etc/rc.server: No such file or directory
 
 > According to the [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-restarts-instead-of-shut-down/) it does not matter so it can be considered solved.
 
-### DSDT ###
+##### DSDT #####
 [up up up](#)
 
 Extract DSDT with clover installed on a FAT32 stick. Boot on the loader on the main screen hit `F4`. 
@@ -930,7 +872,7 @@ Download [MaciASL](https://sourceforge.net/projects/maciasl)
 
 Check for the patches for [pjalm](http://pjalm.com/forums/)
 
-**The stock DSDT is located here**: [DSDT.HP800G2.zip]({{ site.url }}https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/DSDT.HP800G2.zip)
+**The stock DSDT is located here**: [DSDT.HP800G2.zip](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/DSDT.HP800G2.zip)
 
 check the [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-restarts-instead-of-shut-down/)
 
@@ -938,10 +880,10 @@ check the [thread](http://www.insanelymac.com/forum/topic/319802-skylake-sierra-
 
 **But I am not using it**
 
-# Install 10.12 my way manually #
+### Install 10.12 my way manually ###
 [up up up](#)
 
-## Prepare USB stick ##
+#### Prepare USB stick ####
 [up up up](#)
 
 format usb stick:
@@ -956,7 +898,7 @@ use command to install sierra to the stick:
 sudo /Applications/Install\ macOS\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/USB --applicationpath /Applications/Install\ macOS\ Sierra.app --nointeraction
 ```
 
-## Install Clover USB stick ##
+#### Install Clover USB stick ####
 [up up up](#)
 
 get clover `Clover_v2.3k_r3974.zip` from [sourceforge.net](http://sourceforge.net/projects/cloverefiboot/) 
@@ -979,14 +921,14 @@ Use the [`/EFI/CLOVER/config.plist`](https://raw.github.com/sakoula/hackintosh.h
 
 and you are ready
 
-## Install Sierra 10.12.2 ##
+#### Install Sierra 10.12.2 ####
 [up up up](#)
 
 unplug everything but two disks / keyboard / wired mouse.
 
 On the installer open disk utility and format the boot disk as `GUID Partition Map`/`Macintosh HD`/`Mac OS Extended (Journaled)`
 
-## Configure Sierra 10.12.2 ##
+#### Configure Sierra 10.12.2 ####
 [up up up](#)
 
 get clover `Clover_v2.3k_r3974.zip` from [sourceforge.net](http://sourceforge.net/projects/cloverefiboot/) 
@@ -1009,16 +951,16 @@ Place the [multibeast](https://raw.github.com/sakoula/hackintosh.hp.800.g2/maste
 
 Mount the EFI partition with a tool like clover configurator.
 
-Make sure to delete `/EFI/CLOVER/drivers64UEFI/VBoxHfs-64.efi` and replace it with [`/EFI/CLOVER/drivers64UEFI/HFSPlus.efi`](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/HFSPlus.efi.zip)
+Make sure to delete `/EFI/CLOVER/drivers64UEFI/VBoxHfs-64.efi` and replace it with [`/EFI/CLOVER/drivers64UEFI/HFSPlus.efi`](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/macOS-bog-G2-i7/HFSPlus.efi.zip)
 
-Use the [`/EFI/CLOVER/config.plist`](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/10.12.2.config.plist)
+Use the [`/EFI/CLOVER/config.plist`](https://raw.github.com/sakoula/hackintosh.hp.800.g2/master/assets/macOS-bog-G2-i7/10.12.3.config.plist)
 
 Boot directly from disk and run a brief benchmark with Geekbench:
 
 * `GeekBench x64 4.0.3 CPU` 5072/15818
 * `GeekBench x64 4.0.3 GPU/OpenCl` 19516
 
-## System Preferences Initial Configuration ##
+#### System Preferences Initial Configuration ####
 [up up up](#)
 
 * Energy Saver > Turn display off after: **never** (*I noticed that when I lock the screen the display goes odd anyway, I want it on when I am there*)
@@ -1026,7 +968,7 @@ Boot directly from disk and run a brief benchmark with Geekbench:
 * Energy Saver > Prevent computer from sleeping automtically when the display is off **checked**
 * Energy Saver > Enable Power Nap **unchecked**
 
-# Benchmarking Sierra 10.12.2 #
+### Benchmarking Sierra 10.12.2 ###
 [up up up](#)
 
 * `GeekBench x64 4.0.3 CPU` 5057/15699
@@ -1068,7 +1010,7 @@ As I wrote in [this thread](http://www.insanelymac.com/forum/topic/319724-skylak
  
 I assume that it is ok since the support of the HD530 is not as good as in Windows
 
-# HDD/SSD performance #
+### HDD/SSD performance ###
 [up up up](#)
 
 * `AJA SanDisk (no trim) SD7SB3Q-256G-1006 Revision X2180006: 356MB/sec write, 412MB/sec read`
@@ -1389,18 +1331,18 @@ Selective self-test flags (0x0):
 If Selective self-test is pending on power-up, resume after 0 minute delay.
 ```
 
-# Upgrade to 10.12.3 #
+### Upgrade to 10.12.3 ###
 [up up up](#)
 
 check link at [tonymac](https://www.tonymacx86.com/threads/macos-10-12-3-update.212177/)
 
 update from within the OS.
 
-Goto `System Preferences > Clover > Check Now > Update` and follow the [Install Clover USB stick]. Your clover configuration is **not** overwritten. You have the 3974 and upgrade to 3998
+Goto `System Preferences > Clover > Check Now > Update` and follow the [Install Clover USB stick]. Your clover configuration is **not** overwritten. You have the 3974 and upgrade to 3998 and I upgrade to 4003
 
 > **Note:** I had problems with the second monitor and making it work. It seems that I had to remove the config.plist `Kernel and Kext Patchs > AppleGraphicsDevicePolicy` patch and patch the `AppleGraphicsControl.kext`. I have not tested rebuilding all the kexts.
 
-# References #
+### References ###
 [up up up](#)
 
 * [10.11.4+ Skylake Starter Guide](http://www.tonymacx86.com/threads/10-11-4-skylake-starter-guide.193628/)
@@ -1408,7 +1350,7 @@ Goto `System Preferences > Clover > Check Now > Update` and follow the [Install 
 * [Skylake Intel HD 530 Integrated Graphics Working as of 10.11.4](http://www.tonymacx86.com/threads/skylake-intel-hd-530-integrated-graphics-working-as-of-10-11-4.188891/)
 * [http://h20564.www2.hp.com/hpsc/swd/public/readIndex?sp4ts.oid=7633299&swLangOid=8&swEnvOid=4192](http://h20564.www2.hp.com/hpsc/swd/public/readIndex?sp4ts.oid=7633299&swLangOid=8&swEnvOid=4192)
 
-# Software #
+### Software ###
 [up up up](#)
 
 * [clover configurator](http://mackie100projects.altervista.org/download-clover-configurator/)
