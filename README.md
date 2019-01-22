@@ -1,3 +1,6 @@
+>  :loudspeaker: **NOTE:** This guide has been deprecated. Use [sakoula/HP-EliteDesk-800-G2-6700
+](https://github.com/sakoula/HP-EliteDesk-800-G2-6700) for installing mojave on your *HP EliteDesk 800 G2*
+
 **Installing and configuring macOS on a 'HP EliteDesk 800 G2 TWR'**
 
 Table of Contents
